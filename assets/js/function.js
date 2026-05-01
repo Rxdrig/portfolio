@@ -80,43 +80,74 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     });
 
-    // Mobile nav toggle: abre/cierra menú vertical, bloquea scroll y cierra con Escape
+    // Mobile nav panel toggle: slide-down panel using #primary-nav.mobile-panel
     const headerEl = document.querySelector('.site-header');
     const navToggle = document.querySelector('.nav-toggle');
     const siteNav = document.querySelector('#primary-nav');
 
     function lockScroll(lock) {
-        if (lock) document.documentElement.style.overflow = 'hidden';
-        else document.documentElement.style.overflow = '';
+        try {
+            if (lock) document.body.style.overflow = 'hidden';
+            else document.body.style.overflow = '';
+        } catch (err) {
+            if (lock) document.documentElement.style.overflow = 'hidden';
+            else document.documentElement.style.overflow = '';
+        }
     }
 
-    if (navToggle && headerEl) {
+    if (navToggle && headerEl && siteNav) {
+        // ensure mobile-panel class exists for mobile behavior
+        siteNav.classList.add('mobile-panel');
+
+        // create overlay if not present
+        let navOverlay = document.querySelector('.nav-overlay');
+        if (!navOverlay) {
+            navOverlay = document.createElement('div');
+            navOverlay.className = 'nav-overlay';
+            document.body.appendChild(navOverlay);
+        }
+
+        // toggle handler
         navToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             const isOpen = headerEl.classList.toggle('nav-open');
             navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             const icon = navToggle.querySelector('i');
             if (icon) icon.className = isOpen ? 'bi bi-x' : 'bi bi-list';
+            siteNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
             lockScroll(isOpen);
+            if (isOpen) {
+                navOverlay.classList.add('visible');
+                // focus first link for accessibility
+                setTimeout(() => siteNav.querySelector('.nav-link')?.focus(), 220);
+            } else {
+                navOverlay.classList.remove('visible');
+            }
         });
 
-        siteNav?.querySelectorAll('.nav-link').forEach(link => {
+        // Close when clicking a nav link
+        siteNav.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 headerEl.classList.remove('nav-open');
                 navToggle.setAttribute('aria-expanded', 'false');
+                siteNav.setAttribute('aria-hidden', 'true');
                 const icon = navToggle.querySelector('i');
                 if (icon) icon.className = 'bi bi-list';
                 lockScroll(false);
+                navOverlay.classList.remove('visible');
             });
         });
 
-        document.addEventListener('click', (ev) => {
-            if (!headerEl.contains(ev.target) && headerEl.classList.contains('nav-open')) {
+        // Close when clicking outside (overlay) or pressing Escape
+        navOverlay.addEventListener('click', () => {
+            if (headerEl.classList.contains('nav-open')) {
                 headerEl.classList.remove('nav-open');
                 navToggle.setAttribute('aria-expanded', 'false');
+                siteNav.setAttribute('aria-hidden', 'true');
                 const icon = navToggle.querySelector('i');
                 if (icon) icon.className = 'bi bi-list';
                 lockScroll(false);
+                navOverlay.classList.remove('visible');
             }
         });
 
@@ -124,9 +155,24 @@ document.addEventListener('DOMContentLoaded', function(){
             if (ev.key === 'Escape' && headerEl.classList.contains('nav-open')) {
                 headerEl.classList.remove('nav-open');
                 navToggle.setAttribute('aria-expanded', 'false');
+                siteNav.setAttribute('aria-hidden', 'true');
                 const icon = navToggle.querySelector('i');
                 if (icon) icon.className = 'bi bi-list';
                 lockScroll(false);
+                navOverlay.classList.remove('visible');
+            }
+        });
+
+        // If resizing to desktop, ensure panel closed and overlay removed
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 900 && headerEl.classList.contains('nav-open')) {
+                headerEl.classList.remove('nav-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                siteNav.setAttribute('aria-hidden', 'false');
+                const icon = navToggle.querySelector('i');
+                if (icon) icon.className = 'bi bi-list';
+                lockScroll(false);
+                navOverlay.classList.remove('visible');
             }
         });
     }
