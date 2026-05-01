@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rodrigo Mella | Portfolio</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="site-header fixed-top">
+  <div class="container">
+    <a href="#" class="brand" aria-label="Inicio">Rodrigo <span class="accent">Mella</span></a>
+
+    <button class="nav-toggle" aria-label="Abrir menú" aria-controls="primary-nav" aria-expanded="false">
+      <i class="bi bi-list" aria-hidden="true"></i>
+    </button>
+
+    <nav id="primary-nav" class="site-nav" aria-label="Navegación principal" role="navigation">
+      <a href="#proyectos" class="nav-link">Proyectos</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#contacto" class="nav-link">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<main>
+  <section class="hero vh-100 d-flex align-items-center reveal" id="home">
+    <div class="container">
+      <div class="row align-items-center flex-lg-row-reverse">
+        <div class="col-lg-5 text-center text-lg-start mb-5 mb-lg-0 reveal" style="--reveal-delay: 120ms;">
+          <div class="avatar-placeholder mx-auto mx-lg-0"></div>
+        </div>
+
+        <div class="col-lg-7 text-lg-start">
+          <h1 class="display-title reveal" style="--reveal-delay: 220ms;"><span class="name">Rodrigo Mella</span><span class="accent"></span></h1>
+          <h2 class="role reveal" style="--reveal-delay: 300ms;">Frontend Developer</h2>
+          <p class="lead reveal" style="--reveal-delay: 380ms;">Diseñador Gráfico y estudiante de último año de Ingeniería Informática, con enfoque en desarrollo web.</p>
+          <p class="lead reveal" style="--reveal-delay: 380ms;">Busco seguir desarrollándome en el área, aprendiendo nuevas tecnologías y aportando tanto mis conocimientos técnicos como mi enfoque visual y creativo.</p>
+          <div class="mt-4 reveal" style="--reveal-delay: 460ms;">
+            <a href="#" onclick="descargarCV();return false;" class="btn-custom">Descargar CV</a>
+            <a href="#contacto" class="btn-outline-custom ms-3">Contactar</a>
+          </div>
+
+          <div class="tech-icons mt-4 reveal" style="--reveal-delay: 540ms;">
+            <i class="bi bi-file-earmark-code-fill" title="HTML/CSS"></i>
+            <i class="bi bi-braces" title="JavaScript"></i>
+            <i class="bi bi-github" title="GitHub"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos" class="section reveal">
+    <div class="container">
+      <h3 class="section-title">Proyectos</h3>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <article class="project-card">
+            <img src="assets/img/ejemplo.avif" alt="Proyecto ejemplo" class="project-img">
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-tag">Web App</span>
+                <span class="project-status">Featured</span>
+              </div>
+              <h5>Ejemplo</h5>
+              <p>Gestor de tareas con UI limpia, foco en productividad y almacenamiento local.</p>
+              <div class="project-skills">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JS</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="icon-btn"><i class="bi bi-github"></i></a>
+                <a href="#" class="icon-btn"><i class="bi bi-box-arrow-up-right"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <article class="project-card">
+            <img src="assets/img/ejemplo.avif" alt="Proyecto ejemplo" class="project-img">
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-tag">Landing</span>
+                <span class="project-status">Responsive</span>
+              </div>
+              <h5>Ejemplo</h5>
+              <p>Landing moderna orientada a conversión, velocidad y una navegación muy clara.</p>
+              <div class="project-skills">
+                <span>UI</span>
+                <span>SEO</span>
+                <span>Performance</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="icon-btn"><i class="bi bi-github"></i></a>
+                <a href="#" class="icon-btn"><i class="bi bi-box-arrow-up-right"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <article class="project-card">
+            <img src="assets/img/ejemplo.avif" alt="Proyecto ejemplo" class="project-img">
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="project-tag">Dashboard</span>
+                <span class="project-status">API</span>
+              </div>
+              <h5>Ejemplo</h5>
+              <p>Consumo de API con visualización de datos simple, clara y fácil de leer.</p>
+              <div class="project-skills">
+                <span>API</span>
+                <span>Charts</span>
+                <span>UX</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="icon-btn"><i class="bi bi-github"></i></a>
+                <a href="#" class="icon-btn"><i class="bi bi-box-arrow-up-right"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h3 class="section-title text-center">Skills</h3>
+      <div class="skills-pro mt-5" aria-label="Resumen profesional de habilidades">
+        <article class="skill-row reveal">
+          <div class="skill-row-head">
+            <h4><i class="bi bi-braces-asterisk"></i> Frontend </h4>
+          </div>
+          <p>Construcción de interfaces modernas con enfoque en rendimiento, accesibilidad y escalabilidad visual.</p>
+          <div class="skill-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>React</span>
+            <span>Git</span>
+          </div>
+        </article>
+
+        <article class="skill-row reveal">
+          <div class="skill-row-head">
+            <h4><i class="bi bi-server"></i> Backend </h4>
+          </div>
+          <p>Diseño de servicios y consumo de APIs para respaldar aplicaciones web completas y mantenibles.</p>
+          <div class="skill-tags">
+            <span>Python</span>
+            <span>Django</span>
+            <span>REST APIs</span>
+            <span>SQL</span>
+          </div>
+        </article>
+
+        <article class="skill-row reveal">
+          <div class="skill-row-head">
+            <h4><i class="bi bi-palette2"></i> Design & UI</h4>
+          </div>
+          <p>Sistemas visuales consistentes para productos digitales con foco en claridad, marca y detalle.</p>
+          <div class="skill-tags">
+            <span>UI Design</span>
+            <span>Adobe Illustrator</span>
+            <span>Adobe Photoshop</span>
+            <span>Branding</span>
+          </div>
+        </article>
+
+        <article class="skill-row reveal">
+          <div class="skill-row-head">
+            <h4><i class="bi bi-graph-up-arrow"></i> Data </h4>
+          </div>
+          <p>Gestión, modelado y visualización de datos para generar reportes útiles y decisiones informadas.</p>
+          <div class="skill-tags">
+            <span>SQL</span>
+            <span>MongoDB</span>
+            <span>Power BI</span>
+            <span>R</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section reveal">
+    <div class="container text-center">
+      <h3 class="section-title">Contacto</h3>
+      <p class="muted">Si deseas contactarme, puedes escribirme a:</p>
+      <a class="email-link" href="mailto:rodrigoamellav@gmail.com">rodrigoamellav@gmail.com</a>
+      <div id="contact-buttons" class="contact-cards mt-4 d-flex justify-content-center gap-3 flex-wrap"></div>
+    </div>
+  </section>
+</main>
+
+<!-- JS -->
+<script src="./assets/js/function.js"></script>
+
+</body>
+</html>
