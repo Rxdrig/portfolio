@@ -80,7 +80,7 @@ function createProjectCard(project, index) {
             <div class="project-copy">
                 <div class="project-meta-row">
                     <span class="project-index">${project.metric}</span>
-                    <span class="project-status">Portfolio case study</span>
+                    <span class="project-status">${project.status}</span>
                 </div>
                 <h3>${project.title}</h3>
                 <p>${project.description}</p>
