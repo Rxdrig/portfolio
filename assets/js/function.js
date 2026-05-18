@@ -177,17 +177,18 @@ function setupContactForm() {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    Accept: 'application/json'
+                    'Accept': 'application/json'
                 }
             });
 
-            if (!response.ok) {
-                throw new Error('No se pudo enviar el mensaje.');
+            if (response.ok) {
+                form.reset();
+                showContactStatus('Mensaje enviado con éxito. Te responderé pronto.');
+            } else {
+                throw new Error('Error en la respuesta del servidor');
             }
-
-            form.reset();
-            showContactStatus('Mensaje enviado con éxito.');
         } catch (error) {
+            console.error('Error al enviar:', error);
             showContactStatus('No se pudo enviar el mensaje. Intenta de nuevo.', true);
         } finally {
             if (submitButton) {
