@@ -110,7 +110,8 @@ function renderProjects() {
     const container = document.getElementById('projects-grid');
     if (!container) return;
     container.innerHTML = '';
-    cardsData.projects.forEach((project, index) => {
+    // Mostrar solo las primeras 2 proyectos
+    cardsData.projects.slice(0, 2).forEach((project, index) => {
         const card = createProjectCard(project, index);
         card.style.setProperty('--reveal-delay', `${index * 140}ms`);
         container.appendChild(card);

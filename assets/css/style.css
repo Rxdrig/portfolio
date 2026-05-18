@@ -290,8 +290,8 @@ img { max-width: 100%; display: block; }
 .project-card h3 { margin: 0 0 10px; font-size: 1.25rem; }
 .project-card p { margin: 0 0 18px; line-height: 1.65; }
 
-.projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
-.project-card { height: 100%; border-radius: 30px; overflow: hidden; transition: transform 0.34s var(--ease-smooth), border-color 0.34s var(--ease-smooth), box-shadow 0.34s var(--ease-smooth); }
+.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; row-gap: 34px; align-items: stretch; max-width: 980px; margin: 0 auto; }
+.project-card { position: relative; height: 100%; border-radius: 30px; overflow: hidden; transition: transform 0.34s var(--ease-smooth), border-color 0.34s var(--ease-smooth), box-shadow 0.34s var(--ease-smooth); }
 .project-card:hover { transform: translateY(-6px) scale(1.01); border-color: var(--border-strong); }
 
 .project-surface {
@@ -302,14 +302,14 @@ img { max-width: 100%; display: block; }
 
 .project-visual {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #141824;
 }
 
 .project-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s var(--ease-smooth); }
 .project-card:hover .project-visual img { transform: scale(1.06); }
-.project-visual::after { content: ''; position: absolute; inset: auto 0 0; height: 46%; background: linear-gradient(180deg, transparent, rgba(5, 8, 22, 0.92)); }
+.project-visual::after { content: ''; position: absolute; inset: auto 0 0; height: 40%; background: linear-gradient(180deg, transparent, rgba(5, 8, 22, 0.92)); }
 
 /* Carrusel Mini */
 .project-carousel {
@@ -376,10 +376,10 @@ img { max-width: 100%; display: block; }
 }
 
 .project-copy {
-  padding: 24px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   flex: 1;
 }
 
@@ -390,7 +390,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.08em; color: #dbeafe; background: rgba(255, 255, 255, 0.035); border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.project-copy h3 { margin: 0; font-size: clamp(1.3rem, 1.8vw, 1.55rem); }
+.project-copy h3 { margin: 0; font-size: clamp(1.15rem, 1.4vw, 1.35rem); }
 .project-copy p {
   margin: 0;
   line-height: 1.65;
@@ -403,6 +403,9 @@ img { max-width: 100%; display: block; }
 
 .project-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; }
 
+/* Colocar la sección de tecnologías al final de la card */
+.project-tech { margin-top: auto; }
+
 .project-button {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); color: var(--text-main);
@@ -413,8 +416,15 @@ img { max-width: 100%; display: block; }
 .project-button:hover { transform: translateY(-3px); border-color: rgba(125, 211, 252, 0.32); background: rgba(255, 255, 255, 0.06); }
 
 .project-actions {
-  position: absolute; bottom: 16px; right: 16px; z-index: 2;
-  display: flex; gap: 10px;
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  top: auto;
+  transform: none;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .project-action-btn {
@@ -700,6 +710,16 @@ img { max-width: 100%; display: block; }
   .skills-grid { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
+
+  /* En pantallas pequeñas colocar acciones en la esquina inferior izquierda */
+  .project-actions {
+    left: 16px;
+    right: auto;
+    top: auto;
+    bottom: 16px;
+    transform: none;
+    flex-direction: row;
+  }
 }
 
 @media (max-width: 560px) {
