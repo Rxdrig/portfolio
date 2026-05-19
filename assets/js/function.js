@@ -22,11 +22,40 @@ function createSkillCard(skill) {
     return article;
 }
 
+function formatCardLabel(value) {
+    if (!value) return '';
+
+    return value
+        .toString()
+        .trim()
+        .replace(/\b\w/g, (character) => character.toUpperCase());
+}
+
+function getProjectStatusTone(status) {
+    const normalized = (status || '').toString().toLowerCase();
+
+    if (normalized.includes('live') || normalized.includes('activo')) {
+        return 'live';
+    }
+
+    if (normalized.includes('complete') || normalized.includes('complet')) {
+        return 'complete';
+    }
+
+    if (normalized.includes('develop') || normalized.includes('desarrollo')) {
+        return 'development';
+    }
+
+    return 'default';
+}
+
 function createProjectCard(project, index) {
     const carouselId = `carousel-${index}`;
     const modalId = `imageModal-${index}`;
     const article = document.createElement('article');
     article.className = 'project-card reveal';
+    const statusLabel = formatCardLabel(project.status || 'En progreso');
+    const statusTone = getProjectStatusTone(project.status);
     
     const hasMultipleImages = project.images && project.images.length > 1;
     
@@ -49,7 +78,6 @@ function createProjectCard(project, index) {
                             >
                         `).join('')}
                     </div>
-                    
                     ${hasMultipleImages ? `
                         <button class="carousel-nav carousel-prev" data-carousel-id="${carouselId}" aria-label="Imagen anterior">
                             <i class="bi bi-chevron-left"></i>
@@ -70,20 +98,21 @@ function createProjectCard(project, index) {
                         </div>
                     ` : ''}
                 </div>
-                
+
                 <div class="project-actions">
-                    <a class="project-action-btn" href="${project.github}" target="_blank" rel="noopener noreferrer" aria-label="Ver código de ${project.title}"><i class="bi bi-github"></i></a>
-                    <a class="project-action-btn" href="${project.demo}" target="_blank" rel="noopener noreferrer" aria-label="Ver demo de ${project.title}"><i class="bi bi-box-arrow-up-right"></i></a>
+                    <a class="project-action-btn" href="${project.github}" target="_blank" rel="noopener noreferrer" aria-label="Ver código de ${project.title}">
+                        <i class="bi bi-github" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
             
             <div class="project-copy">
                 <div class="project-meta-row">
                     <span class="project-index">${project.metric}</span>
-                    <span class="project-status">${project.status}</span>
+                    <span class="project-status project-status--${statusTone}">${statusLabel}</span>
                 </div>
                 <h3>${project.title}</h3>
-                <p>${project.description}</p>
+                <p class="project-description">${project.description}</p>
                 <p class="project-summary">${project.summary}</p>
                 <div class="project-tech">
                     ${project.technologies.map((technology) => `<span>${technology}</span>`).join('')}
@@ -93,6 +122,31 @@ function createProjectCard(project, index) {
     `;
     
     return article;
+}
+
+function createAboutCard(item) {
+    const article = document.createElement('article');
+    article.className = 'about-card glass-card reveal';
+    article.innerHTML = `
+        <div class="about-card-head">
+            <div class="about-icon"><i class="bi ${item.icon}"></i></div>
+            <h3>${item.title}</h3>
+        </div>
+        <p>${item.text}</p>
+    `;
+    return article;
+}
+
+function renderAbout() {
+    const container = document.getElementById('about-grid');
+    if (!container) return;
+    container.innerHTML = '';
+    if (!Array.isArray(cardsData.about)) return;
+    cardsData.about.forEach((it, index) => {
+        const card = createAboutCard(it);
+        card.style.setProperty('--reveal-delay', `${index * 80}ms`);
+        container.appendChild(card);
+    });
 }
 
 function renderSkills() {
@@ -396,6 +450,7 @@ function initializeCarousels() {
 
 document.addEventListener('DOMContentLoaded', () => {
     renderSkills();
+    renderAbout();
     renderProjects();
     initializeCarousels();
     setupDownloadButton();

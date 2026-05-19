@@ -32,7 +32,7 @@ const cardsData = {
             technologies: ['React', 'Vite', 'Node.js', 'Express', 'Bootstrap 5'],
             metric: 'E-commerce',
             github: 'https://github.com/Rxdrig/game-store',
-            demo: '#',
+            //demo: '#',
             featured: false,
             status: 'full stack'
         },
@@ -50,7 +50,7 @@ const cardsData = {
             technologies: ['Django', 'Python', 'SQLite', 'Bootstrap', 'JavaScript'],
             metric: 'Dashboard Financiero',
             github: 'https://github.com/Rxdrig/expense-flow',
-            demo: '#',
+            //demo: '#',
             featured: false,
             status: 'full stack'
         },
@@ -63,8 +63,31 @@ const cardsData = {
             technologies: ['JavaScript'],
             metric: 'en desarrollo',
             github: '#',
-            demo: '#',
+            //demo: '#',
             featured: false
+        }
+    ]
+    ,
+    about: [
+        {
+            icon: 'bi-person-circle',
+            title: 'Quién soy',
+            text: 'Soy Rodrigo, un apasionado de la tecnología con enfoque en el desarrollo front-end. Me interesa la resolución de problemas y la creatividad aplicada al diseño web.'
+        },
+        {
+            icon: 'bi-phone',
+            title: 'Responsive Design',
+            text: 'Diseño interfaces responsivas que se adaptan de manera fluida a cualquier dispositivo, priorizando la experiencia de usuario y la accesibilidad.'
+        },
+        {
+            icon: 'bi-people',
+            title: 'Soft Skills',
+            text: 'Trabajo bien en equipos ágiles, me adapto rápido a cambios y mantengo comunicación clara para cumplir plazos y objetivos.'
+        },
+        {
+            icon: 'bi-book',
+            title: 'Estudios',
+            text: 'Autodidacta con formación en Ingeniería Informática y Diseño Gráfico. Siempre aprendiendo nuevas tecnologías y técnicas de diseño.'
         }
     ]
 };
