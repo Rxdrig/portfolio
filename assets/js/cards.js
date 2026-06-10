@@ -46,7 +46,8 @@ const cardsData = {
                     'assets/img/expenseflow-3.webp',
                     'assets/img/expenseflow-4.webp',
                     'assets/img/expenseflow-5.webp',
-                    'assets/img/expenseflow-6.webp',],
+                    'assets/img/expenseflow-6.webp',
+                    'assets/img/expenseflow-7.webp'],
             technologies: ['Django', 'Python', 'SQLite', 'Bootstrap', 'JavaScript'],
             metric: 'Dashboard Financiero',
             github: 'https://github.com/Rxdrig/expense-flow',
@@ -87,7 +88,7 @@ const cardsData = {
         {
             icon: 'bi-book',
             title: 'Estudios',
-            text: 'Autodidacta con formación en Ingeniería Informática y Diseño Gráfico. Siempre aprendiendo nuevas tecnologías y técnicas de diseño.'
+            text: 'Formación en Ingeniería Informática y Diseño Gráfico. Siempre aprendiendo nuevas tecnologías y técnicas de diseño.'
         }
     ]
 };
