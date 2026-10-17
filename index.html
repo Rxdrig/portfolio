@@ -37,9 +37,16 @@
     </header>
 
     <main>
-      <section class="hero" id="home">
+<section class="hero" id="home">
         <div class="container hero-grid">
+          <!-- COLUMNA IZQUIERDA (Botón JSON arriba, Título, Lead, Botones de Acción y Redes) -->
           <div class="hero-copy reveal" style="--reveal-delay: 120ms;">
+            <button type="button" class="btn-json-trigger mb-3" id="json-trigger" aria-label="Abrir vista JSON">
+              <span class="pulse-dot"></span>
+              <i class="bi bi-code-slash"></i>
+              <span>developer.json</span>
+            </button>
+
             <h1>
               Rodrigo <span>Mella</span><br>
               Desarrollador<br>
@@ -61,6 +68,37 @@
               <a href="https://www.linkedin.com/in/rodrigoamellav" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Visita mi LinkedIn">
                 <i class="bi bi-linkedin"></i>
               </a>
+            </div>
+          </div>
+
+          <!-- COLUMNA DERECHA (Ventana JSON desplegable) -->
+          <div class="hero-json-slot">
+            <div class="hero-json-overlay" id="json-overlay">
+              <div class="code-card-header">
+                <div class="code-dots">
+                  <span class="dot dot-red" id="close-json-btn"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="code-card-title">developer.json</span>
+                <button type="button" class="json-close-x" id="close-json-x"><i class="bi bi-x-lg"></i></button>
+              </div>
+              <div class="code-card-body">
+                <span class="code-keyword">const</span> <span class="code-variable">developer</span> = {<br>
+                &nbsp;&nbsp;name: <span class="code-string">'Rodrigo Mella Valenzuela'</span>,<br>
+                &nbsp;&nbsp;role: <span class="code-string">'Full Stack Developer'</span>,<br>
+                &nbsp;&nbsp;location: <span class="code-string">'Santiago, Chile'</span>,<br>
+                &nbsp;&nbsp;education: <span class="code-string">'Ingeniería Informática & Diseño Gráfico'</span>,<br>
+                &nbsp;&nbsp;languages: [<span class="code-string">'Python'</span>, <span class="code-string">'JavaScript'</span>, <span class="code-string">'SQL'</span>],<br>
+                &nbsp;&nbsp;webTechnologies: [<span class="code-string">'HTML5'</span>, <span class="code-string">'CSS3'</span>, <span class="code-string">'Bootstrap'</span>],<br>
+                &nbsp;&nbsp;frameworks: [<span class="code-string">'Django'</span>, <span class="code-string">'React'</span>, <span class="code-string">'Node.js'</span>],<br>
+                &nbsp;&nbsp;database: [<span class="code-string">'MySQL'</span>, <span class="code-string">'MongoDB'</span>, <span class="code-string">'SQLite'</span>],<br>
+                &nbsp;&nbsp;dataAnalytics: [<span class="code-string">'Power BI'</span>, <span class="code-string">'Excel'</span>],<br>
+                &nbsp;&nbsp;devOpsTools: [<span class="code-string">'Git/GitHub'</span>, <span class="code-string">'Azure DevOps'</span>],<br>
+                &nbsp;&nbsp;cloudPlatform: [<span class="code-string">'AWS'</span>],<br>
+                &nbsp;&nbsp;availableForHire: <span class="code-keyword">true</span><br>
+                };
+              </div>
             </div>
           </div>
         </div>

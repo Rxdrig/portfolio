@@ -469,3 +469,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const jsonTrigger = document.getElementById('json-trigger');
+  const jsonOverlay = document.getElementById('json-overlay');
+  const closeBtn = document.getElementById('close-json-btn');
+  const closeX = document.getElementById('close-json-x');
+
+  if (jsonTrigger && jsonOverlay) {
+    // Abrir panel
+    jsonTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      jsonOverlay.classList.toggle('is-active');
+    });
+
+    // Cerrar desde los botones de la tarjeta
+    [closeBtn, closeX].forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          jsonOverlay.classList.remove('is-active');
+        });
+      }
+    });
+
+    // Cerrar si se hace clic fuera del panel
+    document.addEventListener('click', (e) => {
+      if (!jsonOverlay.contains(e.target) && !jsonTrigger.contains(e.target)) {
+        jsonOverlay.classList.remove('is-active');
+      }
+    });
+  }
+});

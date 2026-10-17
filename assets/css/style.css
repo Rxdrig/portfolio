@@ -887,3 +887,209 @@ img { max-width: 100%; display: block; }
   .project-visual { aspect-ratio: 16 / 10; }
 }
 
+/* --- ESTILOS PARA LA NUEVA SECCIÓN HERO DE 2 COLUMNAS --- */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-code-card {
+  background: var(--bg-panel);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.code-card-header {
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+.code-card-title {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+
+.code-card-body {
+  padding: 22px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.code-keyword { color: #f472b6; }
+.code-variable { color: var(--accent); }
+.code-string { color: #a7f3d0; }
+
+/* Adaptación responsiva para pantallas medianas y móviles */
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+
+/* =========================================================
+   PANEL DESPLEGABLE JSON (BOTÓN + VENTANA A LA DERECHA)
+   ========================================================= */
+
+/* Layout de 2 columnas en el Hero */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Espacio reservado a la derecha para la ventana */
+.hero-json-slot {
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+}
+
+/* Botón interactivo al lado del botón Contacto */
+.btn-json-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 14px;
+  background: rgba(34, 211, 238, 0.06);
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  color: var(--accent);
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.btn-json-trigger:hover {
+  background: rgba(34, 211, 238, 0.16);
+  border-color: rgba(34, 211, 238, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: pulseGlow 1.8s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* Ventana JSON Desplegable en la columna derecha */
+.hero-json-overlay {
+  width: 100%;
+  background: rgba(21, 27, 36, 0.95);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(34, 211, 238, 0.12);
+  overflow: hidden;
+  
+  /* Animación suave de aparición desde la izquierda hacia la derecha */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-20px) scale(0.96);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Estado Activo cuando se presiona el botón */
+.hero-json-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+}
+
+/* Luces macOS con resplandor luminoso */
+.dot-red { background: #ff5f56; box-shadow: 0 0 8px rgba(255, 95, 86, 0.6); cursor: pointer; }
+.dot-yellow { background: #ffbd2e; box-shadow: 0 0 8px rgba(255, 189, 46, 0.6); }
+.dot-green { background: #27c93f; box-shadow: 0 0 8px rgba(39, 201, 63, 0.6); }
+
+/* Estilos de cabecera y cuerpo de la tarjeta */
+.code-card-header {
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.code-card-title {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+
+.code-card-body {
+  padding: 22px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.code-keyword { color: #f472b6; }
+.code-variable { color: var(--accent); }
+.code-string { color: #a7f3d0; }
+
+.json-close-x {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.json-close-x:hover {
+  color: var(--accent);
+}
+
+/* Adaptación Responsiva */
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .hero-json-slot {
+    min-height: auto;
+  }
+}
