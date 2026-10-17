@@ -134,8 +134,12 @@ img { max-width: 100%; display: block; }
 .hero-copy { max-width: 820px; }
 
 .hero-copy h1 {
-  margin: 18px 0 16px; font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.8rem, 6.6vw, 5.1rem);
-  line-height: 0.98; letter-spacing: -0.06em; max-width: 12ch;
+  margin: 18px 0 16px; 
+  font-family: 'Space Grotesk', sans-serif; 
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem); /* Reducimos ligeramente el tamaño máximo para dar margen */
+  line-height: 1.1; /* Damos un poco más de espacio vertical entre líneas */
+  letter-spacing: -0.04em; 
+  max-width: none; /* Quitamos la restricción de 12ch para que fluya de manera natural */
 }
 
 .hero-copy h1 span { color: var(--accent); text-shadow: none; }
