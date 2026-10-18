@@ -31,7 +31,7 @@ const cardsData = {
                 'assets/img/gamestore-7.webp'],
             technologies: ['React', 'Vite', 'Node.js', 'Express', 'Bootstrap 5'],
             metric: 'E-commerce',
-            github: 'https://github.com/Rxdrig/game-store',
+            github: 'https://github.com/rodrigo-mellav/game-store',
             //demo: '#',
             featured: false,
             status: 'full stack'
@@ -50,7 +50,7 @@ const cardsData = {
                     'assets/img/expenseflow-7.webp'],
             technologies: ['Django', 'Python', 'SQLite', 'Bootstrap', 'JavaScript'],
             metric: 'Dashboard Financiero',
-            github: 'https://github.com/Rxdrig/expense-flow',
+            github: 'https://github.com/rodrigo-mellav/expense-flow',
             //demo: '#',
             featured: false,
             status: 'full stack'
