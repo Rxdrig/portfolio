@@ -73,7 +73,7 @@ const cardsData = {
         {
             icon: 'bi-person-circle',
             title: 'Quién soy',
-            text: 'Soy Rodrigo, un apasionado de la tecnología con enfoque en el desarrollo front-end. Me interesa la resolución de problemas y la creatividad aplicada al diseño web.'
+            text: 'Soy Rodrigo, Ingeniero Informático y Diseñador Gráfico. Combino la resolución de problemas lógicos del backend con la creatividad visual para crear experiencias web funcionales y atractivas.'
         },
         {
             icon: 'bi-phone',

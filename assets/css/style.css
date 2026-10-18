@@ -1093,3 +1093,69 @@ img { max-width: 100%; display: block; }
     min-height: auto;
   }
 }
+
+/* =========================================================
+   AJUSTE DE ESPACIADO HERO -> SOBRE MÍ (MÓVIL)
+   ========================================================= */
+@media (max-width: 900px) {
+  /* Reducir el colchón inferior de la sección Hero */
+  .hero {
+    padding-bottom: 24px !important;
+  }
+
+  /* Reducir el espacio de la grilla interna del Hero */
+  .hero-grid {
+    gap: 16px !important;
+  }
+
+  /* Si el contenedor flotante del JSON no está activo, asegurarse de que no ocupe espacio */
+  .hero-json-slot {
+    min-height: auto !important;
+  }
+
+  /* Reducir el colchón superior de las secciones (incluyendo Sobre mí) */
+  .section-block {
+    padding-top: 30px !important;
+    padding-bottom: 100px !important;
+  }
+}
+
+/* =========================================================
+   COMPACTAR VENTANA DEVELOPER.JSON EN MÓVIL
+   ========================================================= */
+@media (max-width: 900px) {
+  
+  /* 1. Ajustar el contenedor slot en móvil */
+  .hero-json-slot {
+    min-height: auto !important;
+    margin-top: 10px;
+  }
+
+  /* 2. Compactar la ventana JSON */
+  .hero-json-overlay {
+    border-radius: 12px !important; /* Bordes un poco más discretos */
+  }
+
+  /* Reducir cabecera del código */
+  .code-card-header {
+    padding: 8px 12px !important;
+  }
+
+  /* Reducir el texto y espacio interno del JSON */
+  .code-card-body {
+    padding: 12px 14px !important;
+    font-size: 0.75rem !important; /* Fuente más pequeña para que no ocupe tanto espacio */
+    line-height: 1.4 !important;
+    max-height: 260px;             /* Limita la altura si el JSON es largo */
+    overflow-y: auto;              /* Permite scroll interno si es necesario */
+  }
+
+  /* Reducir padding entre el Hero y Sobre Mí */
+  .hero {
+    padding-bottom: 20px !important;
+  }
+
+  .section-block {
+    padding-top: 30px !important;
+  }
+}
