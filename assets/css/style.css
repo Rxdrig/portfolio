@@ -1664,3 +1664,27 @@ img {
     scroll-behavior: auto !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Mobile adjustments for Hero spacing and Section blocks
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  /* Reduce Hero vertical padding */
+  .hero {
+    padding: 60px 0 20px; /* top, horizontal, bottom */
+  }
+
+  /* Reduce Section block vertical padding */
+  .section-block {
+    padding: 50px 0; /* top & bottom */
+  }
+
+  /* Developer JSON overlay adjustments for mobile */
+  .hero-json-slot {
+    min-height: 260px; /* shrink on small screens */
+  }
+  .code-card-body {
+    padding: 14px 16px;
+    font-size: 0.78rem;
+  }
+}
