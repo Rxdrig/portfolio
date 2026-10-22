@@ -7,18 +7,108 @@ function descargarCV() {
     link.remove();
 }
 
+const skillCategoryMeta = {
+    'Frontend': {
+        type: 'frontend',
+        badge: 'Client & UI',
+        subtitle: 'Interfaces dinámicas, responsivas y accesibles'
+    },
+    'Backend & Database': {
+        type: 'backend',
+        badge: 'Server & Data',
+        subtitle: 'Arquitectura de servidores, APIs y gestión de datos'
+    },
+    'Design & Tools': {
+        type: 'tools',
+        badge: 'Design & Flow',
+        subtitle: 'Diseño visual, control de versiones y analítica'
+    }
+};
+
+const skillTechMeta = {
+    'HTML': { icon: 'bi-filetype-html', color: '#e34f26' },
+    'CSS': { icon: 'bi-filetype-css', color: '#264de4' },
+    'JavaScript': { icon: 'bi-filetype-js', color: '#f7df1e' },
+    'React': { svg: `<svg class="tech-svg-icon" viewBox="0 0 115.3 100" width="16" height="16" fill="currentColor"><ellipse cx="57.65" cy="50" rx="16.7" ry="43.4" transform="matrix(0.866 -0.5 0.5 0.866 -17.3 35.65)" fill="none" stroke="currentColor" stroke-width="6"/><ellipse cx="57.65" cy="50" rx="16.7" ry="43.4" transform="matrix(0.866 0.5 -0.5 0.866 32.7 -20.65)" fill="none" stroke="currentColor" stroke-width="6"/><ellipse cx="57.65" cy="50" rx="43.4" ry="16.7" fill="none" stroke="currentColor" stroke-width="6"/><circle cx="57.65" cy="50" r="7.5" fill="currentColor"/></svg>`, color: '#61dafb' },
+    'Bootstrap': { icon: 'bi-bootstrap-fill', color: '#7952b3' },
+    'Python': { icon: 'bi-filetype-py', color: '#3776ab' },
+    'Django': { icon: 'bi-hdd-network-fill', color: '#2ba36c' },
+    'Node.js': { icon: 'bi-diagram-2-fill', color: '#68a063' },
+    'SQL': { icon: 'bi-filetype-sql', color: '#00758f' },
+    'MongoDB': { icon: 'bi-database-fill-gear', color: '#13aa52' },
+    'Adobe Photoshop': { icon: 'bi-image-fill', color: '#31a8ff' },
+    'Adobe Illustrator': { icon: 'bi-vector-pen', color: '#ff9a00' },
+    'Power BI': { icon: 'bi-bar-chart-fill', color: '#f2c811' },
+    'Git': { icon: 'bi-git', color: '#f05032' }
+};
+
 function createSkillCard(skill) {
+    const meta = skillCategoryMeta[skill.title] || {
+        type: 'default',
+        badge: 'Stack',
+        subtitle: 'Herramientas y tecnologías'
+    };
+    const count = skill.items ? skill.items.length : 0;
     const article = document.createElement('article');
-    article.className = 'skill-card reveal';
+    article.className = `skill-card skill-card--${meta.type} reveal`;
+    article.tabIndex = 0;
+    article.setAttribute('role', 'region');
+    article.setAttribute('aria-label', `${skill.title} - ${count} tecnologías`);
+    
     article.innerHTML = `
+        <div class="skill-card-top-line"></div>
         <div class="skill-card-head">
             <div class="skill-icon"><i class="bi ${skill.icon}"></i></div>
-            <h3>${skill.title}</h3>
+            <div class="skill-head-info">
+                <span class="skill-category-badge">${meta.badge}</span>
+                <h3>${skill.title}</h3>
+                <p class="skill-subtitle">${meta.subtitle}</p>
+            </div>
         </div>
-        <ul class="skill-list">
-            ${skill.items.map((item) => `<li>${item}</li>`).join('')}
-        </ul>
+
+        <div class="skill-card-footer">
+            <div class="skill-dropdown-arrow" aria-hidden="true">
+                <i class="bi bi-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="skill-drawer">
+            <div class="skill-drawer-inner">
+                <div class="skill-chips-grid">
+                    ${skill.items.map((item) => {
+                        const tech = skillTechMeta[item];
+                        let iconHtml = '<i class="bi bi-code-slash"></i>';
+                        let techColor = 'var(--accent)';
+                        if (tech) {
+                            techColor = tech.color;
+                            iconHtml = tech.svg ? tech.svg : `<i class="bi ${tech.icon}"></i>`;
+                        }
+                        return `
+                            <div class="skill-chip" style="--tech-color: ${techColor};">
+                                <span class="skill-chip-icon">${iconHtml}</span>
+                                <span class="skill-chip-name">${item}</span>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        </div>
     `;
+
+    // Soporte táctil en móviles para abrir con tap y soporte para accesibilidad
+    article.addEventListener('click', () => {
+        if (window.innerWidth <= 992) {
+            article.classList.toggle('is-open');
+        }
+    });
+
+    article.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            article.classList.toggle('is-open');
+        }
+    });
+
     return article;
 }
 

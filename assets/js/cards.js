@@ -3,17 +3,17 @@ const cardsData = {
         {
             title: 'Frontend',
             icon: 'bi-window-sidebar',
-            items: ['HTML', 'CSS', 'JavaScript', 'React', 'Bootstrap']
+            items: ['HTML', 'CSS', 'React', 'JavaScript', 'Bootstrap']
         },
         {
             title: 'Backend & Database',
             icon: 'bi-database',
-            items: ['Python', 'Django', 'Node.js', 'SQL', 'MongoDB']
+            items: ['Python', 'Django', 'SQL', 'Node.js', 'MongoDB']
         },
         {
             title: 'Design & Tools',
             icon: 'bi-tools',
-            items: ['Adobe Photoshop', 'Adobe Illustrator', 'Power BI', 'Git']
+            items: ['Adobe Photoshop', 'Git', 'Adobe Illustrator', 'Power BI']
         }
     ],
     projects: [
