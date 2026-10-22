@@ -350,55 +350,39 @@ function setHeaderState() {
 }
 
 function setupNavigation() {
-    const navToggle = document.querySelector('.nav-toggle');
     const nav = document.getElementById('primary-nav');
-    const header = document.getElementById('site-header');
+    if (!nav) return;
 
-    if (!navToggle || !nav || !header) return;
+    const sections = ['sobre-mi', 'proyectos', 'skills', 'contacto']
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
 
-    const closeNav = () => {
-        nav.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        const icon = navToggle.querySelector('i');
-        if (icon) icon.className = 'bi bi-list';
-    };
+    const navLinks = nav.querySelectorAll('.nav-link');
 
-    navToggle.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('is-open');
-        navToggle.setAttribute('aria-expanded', String(isOpen));
-        const icon = navToggle.querySelector('i');
-        if (icon) icon.className = isOpen ? 'bi bi-x-lg' : 'bi bi-list';
-    });
+    const updateActiveNav = () => {
+        const scrollPosition = window.scrollY + 160;
+        let currentSectionId = '';
 
-    nav.querySelectorAll('.nav-link').forEach((link) => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth < 900) {
-                closeNav();
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
             }
         });
-    });
 
-    document.addEventListener('click', (event) => {
-        if (window.innerWidth < 900 && nav.classList.contains('is-open')) {
-            const clickedInsideNav = nav.contains(event.target);
-            const clickedToggle = navToggle.contains(event.target);
-            if (!clickedInsideNav && !clickedToggle) {
-                closeNav();
+        navLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${currentSectionId}`) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
-        }
-    });
+        });
+    };
 
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            closeNav();
-        }
-    });
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 900) {
-            closeNav();
-        }
-    });
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
 }
 
 function setupBackToTop() {
