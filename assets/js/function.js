@@ -349,6 +349,42 @@ function setHeaderState() {
     header.classList.toggle('is-scrolled', window.scrollY > 12);
 }
 
+function scrollToSection(targetId) {
+    if (!targetId || !targetId.startsWith('#')) return;
+    const targetSection = document.querySelector(targetId);
+    if (!targetSection) return;
+
+    const navbarOffset = 76;
+    const windowHeight = window.innerHeight;
+
+    // Tomamos el contenedor interior donde comienza el contenido real
+    const container = targetSection.querySelector('.container') || targetSection;
+    const containerRect = container.getBoundingClientRect();
+    const containerTop = containerRect.top + window.scrollY;
+    const containerHeight = container.offsetHeight;
+
+    let targetScrollY;
+
+    // Si el contenido cabe dentro de la ventana (ej. Sobre Mí, Habilidades, Contacto)
+    if (containerHeight < windowHeight - navbarOffset) {
+        // Se centra perfectamente en la pantalla disponible
+        targetScrollY = containerTop - navbarOffset - ((windowHeight - navbarOffset) - containerHeight) / 2;
+    } else {
+        // Si el contenido es más alto (ej. Proyectos), se alinea para que el kicker y el heading
+        // comiencen cómodamente justo debajo del navbar flotante y las tarjetas se vean completas
+        targetScrollY = containerTop - navbarOffset - 14;
+    }
+
+    window.scrollTo({
+        top: Math.max(0, Math.round(targetScrollY)),
+        behavior: 'smooth'
+    });
+
+    if (window.history && window.history.pushState) {
+        window.history.pushState(null, '', targetId);
+    }
+}
+
 function setupNavigation() {
     const nav = document.getElementById('primary-nav');
     if (!nav) return;
@@ -358,6 +394,24 @@ function setupNavigation() {
         .filter(Boolean);
 
     const navLinks = nav.querySelectorAll('.nav-link');
+
+    // Clic con scroll centrado e inteligente
+    navLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            scrollToSection(href);
+        });
+    });
+
+    // Enlaces internos adicionales (ej. botón Contacto del hero)
+    document.querySelectorAll('.hero-actions a[href^="#"], a.btn-secondary[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            scrollToSection(href);
+        });
+    });
 
     const updateActiveNav = () => {
         const scrollPosition = window.scrollY + 160;
